@@ -14,6 +14,23 @@
         body {
             font-family: 'SimSun', serif;
             line-height: 1.6;
+            position: relative;
+            padding-top: 85px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 85px;
+            left: 0;
+            width: 100vw;
+            height: calc(100vh - 85px);
+            background-image: url('傩集.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.8;
         }
 
         /* 导航栏样式 */
@@ -21,8 +38,11 @@
             background-color: #8b0000;
             color: white;
             padding: 15px 0;
-            position: relative;
-            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
             overflow: hidden;
         }
 
@@ -88,7 +108,7 @@
             background-color: #333;
             min-width: 150px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            z-index: 1000;
+            z-index: 10001;
         }
 
         .dropdown li {
@@ -110,17 +130,17 @@
 
         /* 内容区域 */
         .content {
-            padding: 50px 0;
+            padding: 10px 0;
             text-align: center;
         }
 
         .content h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 15px;
         }
 
         .content p {
-            font-size: 18px;
+            font-size: 14px;
             color: #666;
         }
     </style>
@@ -130,7 +150,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <img src="古傩歆语.jpg" alt="古傩歆语">
+                <img src="古傩歆语-removebg-preview.png" alt="古傩歆语">
                 <span>古傩歆语数字平台<br>GuNuoXinYu Digital Platform</span>
             </div>
             <ul class="nav-menu">

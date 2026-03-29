@@ -22,8 +22,11 @@
             background-color: #8b0000;
             color: white;
             padding: 15px 0;
-            position: relative;
-            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
             height: 85px;
         }
 
@@ -89,7 +92,7 @@
             background-color: #333;
             min-width: 150px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            z-index: 1000;
+            z-index: 10001;
         }
 
         .dropdown li {
@@ -112,7 +115,7 @@
         /* 主视觉区域样式 */
         .hero-section {
             position: relative;
-            height: calc(100vh - 85px);
+            height: 100vh;
             overflow: hidden;
             margin-top: 0;
         }
@@ -242,7 +245,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <img src="古傩歆语.jpg" alt="古傩歆语">
+                <img src="古傩歆语-removebg-preview.png" alt="古傩歆语">
                 <span>古傩歆语数字平台<br>GuNuoXinYu Digital Platform</span>
             </div>
             <ul class="nav-menu">
@@ -283,7 +286,7 @@
     <section class="hero-section">
         <div class="hero-slider">
             <div class="slide active" style="background-image: url('戏图片.png');"></div>
-            <div class="slide" style="background-image: url('图片2.jpg');"></div>
+            <div class="slide" style="background-image: url('背景图片2.jpg');"></div>
         </div>
         <div class="hero-content">
             <h1 class="hero-title">傩源——仪式结构解析</h1>
