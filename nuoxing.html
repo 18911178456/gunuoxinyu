@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傩行 - 古傩歆语数字平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SimSun', serif;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: #8b0000;
+            color: white;
+            padding: 15px 0;
+            position: relative;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="%23ffffff" fill-opacity="1" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,53.3C960,53,1056,43,1152,37.3C1248,32,1344,32,1392,32L1440,32L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            min-width: 150px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .dropdown li {
+            list-style: none;
+        }
+
+        .dropdown li a {
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .dropdown li a:hover {
+            background-color: #444;
+        }
+
+        .user-icon {
+            font-size: 20px;
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="古傩歆语.jpg" alt="古傩歆语">
+                <span>古傩歆语数字平台<br>GuNuoXinYu Digital Platform</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">首页</a></li>
+                <li class="nav-item">
+                    <a href="nuoyuan.html">傩源 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoyuan.html">文化档案库</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="nuoxing.html">傩行 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoxing.html">预约体验</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="nuoji.html">傩集 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoji.html">文创商店</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="nuoqu.html">傩趣 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoqu.html">互动游戏</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html">关于我们 <span>▼</span></a>
+                </li>
+            </ul>
+            <div class="user-icon">👤</div>
+        </div>
+    </nav>
+
+    <!-- 内容区域 -->
+    <section class="content">
+        <div class="container">
+            <h1>傩行 - 预约体验</h1>
+            <p>在这里您可以预约参与傩文化体验活动，感受传统傩文化的魅力。</p>
+            <p>页面正在建设中，敬请期待...</p>
+        </div>
+    </section>
+</body>
+</html>
