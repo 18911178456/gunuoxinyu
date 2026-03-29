@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古傩歆语数字平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SimSun', serif;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: #8b0000;
+            color: white;
+            padding: 15px 0;
+            position: relative;
+            z-index: 1000;
+            height: 85px;
+        }
+
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="%23ffffff" fill-opacity="1" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,53.3C960,53,1056,43,1152,37.3C1248,32,1344,32,1392,32L1440,32L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            min-width: 150px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .dropdown li {
+            list-style: none;
+        }
+
+        .dropdown li a {
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .dropdown li a:hover {
+            background-color: #444;
+        }
+
+        .user-icon {
+            font-size: 20px;
+        }
+
+        /* 主视觉区域样式 */
+        .hero-section {
+            position: relative;
+            height: calc(100vh - 85px);
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 0 100px;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background-color: white;
+            color: #333;
+        }
+
+        /* 分页指示器样式 */
+        .pagination {
+            position: absolute;
+            bottom: 30px;
+            right: 100px;
+            display: flex;
+            align-items: center;
+            color: white;
+            z-index: 20;
+        }
+
+        .page-info {
+            margin: 0 20px;
+            font-size: 14px;
+        }
+
+        .page-dots {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: white;
+        }
+
+        .nav-arrows {
+            display: flex;
+        }
+
+        .arrow {
+            width: 30px;
+            height: 30px;
+            border: 1px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .arrow:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="古傩歆语.jpg" alt="古傩歆语">
+                <span>古傩歆语数字平台<br>GuNuoXinYu Digital Platform</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">首页</a></li>
+                <li class="nav-item">
+                    <a href="nuoyuan.html">傩源 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoyuan.html">文化档案库</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="nuoxing.html">傩行 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoxing.html">预约体验</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="nuoji.html">傩集 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoji.html">文创商店</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="nuoqu.html">傩趣 <span>▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="nuoqu.html">互动游戏</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html">关于我们 <span>▼</span></a>
+                </li>
+            </ul>
+            <div class="user-icon">👤</div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区域 -->
+    <section class="hero-section">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('戏图片.png');"></div>
+            <div class="slide" style="background-image: url('图片2.jpg');"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">傩源——仪式结构解析</h1>
+            <p class="hero-subtitle">角色与神灵设定</p>
+            <a href="nuoyuan.html" class="hero-btn">了解更多</a>
+        </div>
+        
+        <!-- 分页指示器 -->
+        <div class="pagination">
+            <div class="nav-arrows">
+                <div class="arrow" id="prev">‹</div>
+                <div class="arrow" id="next">›</div>
+            </div>
+            <div class="page-info" id="pageInfo">1 / 2</div>
+            <div class="page-dots">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 轮播功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevArrow = document.getElementById('prev');
+            const nextArrow = document.getElementById('next');
+            const pageInfo = document.getElementById('pageInfo');
+            const dots = document.querySelectorAll('.dot');
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            // 显示指定幻灯片
+            function showSlide(index) {
+                // 隐藏所有幻灯片
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                    slide.style.opacity = '0';
+                });
+
+                // 隐藏所有圆点
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+
+                // 显示当前幻灯片和圆点
+                slides[index].classList.add('active');
+                slides[index].style.opacity = '1';
+                dots[index].classList.add('active');
+
+                // 更新页码信息
+                pageInfo.textContent = (index + 1) + ' / ' + totalSlides;
+
+                // 更新当前索引
+                currentIndex = index;
+            }
+
+            // 绑定左箭头点击事件
+            prevArrow.addEventListener('click', function() {
+                let newIndex = currentIndex - 1;
+                if (newIndex < 0) {
+                    newIndex = totalSlides - 1;
+                }
+                showSlide(newIndex);
+            });
+
+            // 绑定右箭头点击事件
+            nextArrow.addEventListener('click', function() {
+                let newIndex = currentIndex + 1;
+                if (newIndex >= totalSlides) {
+                    newIndex = 0;
+                }
+                showSlide(newIndex);
+            });
+
+            // 绑定圆点点击事件
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    showSlide(index);
+                });
+            });
+
+            // 初始化显示第一张幻灯片
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
